@@ -60,6 +60,13 @@ const loadProgress = () => {
   income.innerHTML = `доход за клик: ${formatNumber(calculateIncomePerClick())}`;
   bustBusiness.innerHTML = `Улучшить: ${formatNumber(bustBusinessCost)}₽`;
   income2.innerHTML = `доход в секунду: ${formatNumber(calculateIncomePerSecond())}`;
+
+  // Если бизнес-уровень больше 0, запускаем таймер дохода от бизнеса
+  if (businessLevel > 0) {
+    clearInterval(timerId);
+    timerId = setInterval(timerBusiness, 100);
+  }
+
   updateDisplay();
 };
 
@@ -121,6 +128,7 @@ const resetProgress = () => {
   businessLevel = 0;
   bustBusinessCost = 100;
   
+  clearInterval(timerId); // Останавливаем таймер, если он был запущен
   updateDisplay();
 };
 
