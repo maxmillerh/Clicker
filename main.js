@@ -22,7 +22,7 @@ const formatNumber = (num) => {
 
 // обновление дисплея
 const updateDisplay = () => {
-  hText.innerHTML = `Деньги: ${formatNumber(money)}₽`; // обновление суммы денег
+  hText.innerHTML = `Деньги: ${formatNumber(money)}`; // обновление суммы денег
   bustClick.style.opacity = money >= bustClickCost ? 1 : 0.5; // доступность покупки клика
   bustBusiness.style.opacity = money >= bustBusinessCost ? 1 : 0.5; // доступность покупки бизнеса
 };
@@ -56,9 +56,9 @@ const loadProgress = () => {
   bustBusinessCost = parseFloat(localStorage.getItem('bustBusinessCost')) || 100;
 
   // Обновляем значения на экране после загрузки прогресса
-  bustClick.innerHTML = `Повысить: ${formatNumber(bustClickCost)}₽`;
+  bustClick.innerHTML = `Повысить: ${formatNumber(bustClickCost)}`;
   income.innerHTML = `доход за клик: ${formatNumber(calculateIncomePerClick())}`;
-  bustBusiness.innerHTML = `Улучшить: ${formatNumber(bustBusinessCost)}₽`;
+  bustBusiness.innerHTML = `Улучшить: ${formatNumber(bustBusinessCost)}`;
   income2.innerHTML = `доход в секунду: ${formatNumber(calculateIncomePerSecond())}`;
 
   // Если бизнес-уровень больше 0, запускаем таймер дохода от бизнеса
@@ -83,7 +83,7 @@ bustClick.onclick = () => {
     money -= bustClickCost; // плата за покупку
     clickLevel++; // повышение уровня клика
     bustClickCost = 50 * Math.pow(1.3, clickLevel); // Увеличиваем цену улучшения
-    bustClick.innerHTML = `Повысить: ${formatNumber(bustClickCost)}₽`;
+    bustClick.innerHTML = `Повысить: ${formatNumber(bustClickCost)}`;
     income.innerHTML = `доход за клик: ${formatNumber(calculateIncomePerClick())}`;
     saveProgress(); // Сохраняем прогресс после улучшения клика
     updateDisplay();
@@ -103,7 +103,7 @@ bustBusiness.onclick = () => {
     money -= bustBusinessCost; // оплата
     businessLevel++; // повышение уровня
     bustBusinessCost = 100 * Math.pow(1.5, businessLevel); // Увеличиваем цену улучшения
-    bustBusiness.innerHTML = `Улучшить: ${formatNumber(bustBusinessCost)}₽`;
+    bustBusiness.innerHTML = `Улучшить: ${formatNumber(bustBusinessCost)}`;
     income2.innerHTML = `доход в секунду: ${formatNumber(calculateIncomePerSecond())}`;
     
     clearInterval(timerId);
