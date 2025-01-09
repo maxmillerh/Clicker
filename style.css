@@ -11,8 +11,12 @@ height:calc(100vh - 10em - 20px);
 display: flex;
 justify-content: center;
 align-items: center;
-
 }
+
+@media img (min-width: 1000px) {
+ width:50%;
+}
+
 
 header{
 display:flex;
